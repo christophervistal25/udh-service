@@ -3,7 +3,8 @@ import { Document, Schema, Model, model } from "mongoose";
 interface IOffice extends Document {
   name: string;
   description: string;
-  location: string;
+  address : string;
+  location: string | null;
   telephoneNumber: string;
   phoneNumber: string;
   email: string;
@@ -12,7 +13,8 @@ interface IOffice extends Document {
 const OfficeSchema: Schema<IOffice> = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
-  location: { type: String, required: true },
+  address : { type : String, required : true },
+  location: { type: String },
   telephoneNumber: { type: String, required: true },
   phoneNumber: { type: String, required: true },
   email: { type: String, required: true, unique: true },

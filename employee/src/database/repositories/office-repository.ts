@@ -16,7 +16,7 @@ class OfficeRepository {
     return this.model.findById(id);
   }
 
-  async create(office: IOffice): Promise<IOffice> {
+  async store(office: IOffice): Promise<IOffice> {
     const newOffice: IOffice = new this.model(office);
     return newOffice.save();
   }
@@ -25,6 +25,11 @@ class OfficeRepository {
     const existingOffice: IOffice | null = await this.model.findById(id);
     if (existingOffice) {
       existingOffice.name = office.name;
+      existingOffice.description = office.description;
+      existingOffice.address = office.address;
+      existingOffice.telephoneNumber = office.telephoneNumber;
+      existingOffice.phoneNumber = office.phoneNumber;
+      existingOffice.email = office.email;
       existingOffice.location = office.location;
       return existingOffice.save();
     } else {

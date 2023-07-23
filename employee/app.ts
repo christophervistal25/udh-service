@@ -8,7 +8,7 @@ const { PORT, SERVICE_NAME } = require("./src/config");
 import seedDatabase from "./src/database/seeder/";
 const app = express();
 
-seedDatabase();
+// seedDatabase();
 
 app.use(morgan("dev"));
 app.use(express.json());

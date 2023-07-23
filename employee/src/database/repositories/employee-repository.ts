@@ -9,7 +9,7 @@ class EmployeeRepository {
   }
 
   async findAll(): Promise<IEmployee[]> {
-    return this.model.find();
+    return this.model.find().populate(['office', 'position']);
   }
 
   async findById(id: string): Promise<IEmployee | null> {

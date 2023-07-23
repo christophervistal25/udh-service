@@ -6,7 +6,6 @@ import { faker } from "@faker-js/faker";
 
 const seedData = async () => {
   await connection().then(async () => {
-    console.log("Seeding data for employee...");
     // Seed positions
     const positions: IPosition[] = [];
     for (let i = 0; i < 10; i++) {
@@ -24,6 +23,7 @@ const seedData = async () => {
       const office: IOffice = new Office({
         name: faker.company.buzzPhrase(),
         description: faker.company.buzzPhrase(),
+        address: faker.location.streetAddress({ useFullAddress: true }),
         location: JSON.stringify(faker.location.nearbyGPSCoordinate()),
         telephoneNumber: faker.phone.number("501-###-###"),
         phoneNumber: faker.phone.number(),
@@ -35,9 +35,10 @@ const seedData = async () => {
 
     // Seed employees
     const employees: IEmployee[] = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 50; i++) {
       const employee: IEmployee = new Employee({
         firstName: faker.person.firstName(),
+        middleNamee : faker.person.middleName(),
         lastName: faker.person.lastName(),
         position: positions[Math.floor(Math.random() * positions.length)]._id,
         office: offices[Math.floor(Math.random() * offices.length)]._id,

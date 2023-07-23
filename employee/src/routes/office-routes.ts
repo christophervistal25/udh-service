@@ -30,9 +30,10 @@ router.get("/:id", async (req: Request, res: Response) => {
 router.post("/", async (req: Request, res: Response) => {
   try {
     const office: IOffice = req.body;
-    const newOffice: IOffice = await officeRepository.create(office);
+    const newOffice: IOffice = await officeRepository.store(office);
     res.status(201).json(newOffice);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -40,6 +41,7 @@ router.post("/", async (req: Request, res: Response) => {
 router.put("/:id", async (req: Request, res: Response) => {
   try {
     const office: IOffice = req.body;
+    console.log(req.body);
     const updatedOffice: IOffice | null = await officeRepository.update(req.params.id, office);
     if (updatedOffice) {
       res.json(updatedOffice);

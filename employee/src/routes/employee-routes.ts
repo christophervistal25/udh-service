@@ -34,6 +34,7 @@ router.post("/", async (req: Request, res: Response) => {
     const newEmployee: IEmployee = await employeeRepository.create(employee);
     res.status(201).json(newEmployee);
   } catch (error) {
+    console.log(error);
     res.status(500);
   }
 });
